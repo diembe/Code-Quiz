@@ -1,32 +1,32 @@
 
 $(document).ready(function () {
 
-
-
+    var quizFinshed = 0;
+    var secondsLeft = 75;
     var cornerTimer = $("#cornerTimer");
+    cornerTimer.text("Time: " + secondsLeft);
     
-    var secondsLeft = 0;
+    
     
     function startTime() {
       var timerInterval = setInterval(function() {
         secondsLeft--;
         cornerTimer.text("Time: " + secondsLeft);
     
-        if(secondsLeft === 0) {
+        if(secondsLeft <= 0 || quizFinshed === 1) {
           clearInterval(timerInterval);
           allDone();
         }
     
       }, 1000);
-    }
-    
+    } 
 
 
     $("#start").click(questionOne);
 
 
     function questionOne() {
-        secondsLeft = 75;
+
         startTime();
         $("#title").text("Commonly used data types DO NOT include______");
         $("#title").removeClass("text-center");
@@ -46,7 +46,7 @@ $(document).ready(function () {
                 questionTwo();
             } else {
                 console.log("DID NOT click 3. Alerts")
-                // Subtract 10 seconds
+                secondsLeft -= 10;
                 questionTwo();
             }
         });
@@ -65,7 +65,7 @@ $(document).ready(function () {
                 questionThree();
             } else {
                 console.log("DID NOT click 3. Alerts")
-                // Subtract 10 seconds
+                secondsLeft -= 10;
                 questionThree();
             }
         });
@@ -84,7 +84,7 @@ $(document).ready(function () {
                 questionFour();
             } else {
                 console.log("DID NOT click 3. Alerts")
-                // Subtract 10 seconds
+                secondsLeft -= 10;
                 questionFour();
             }
         });
@@ -103,7 +103,7 @@ $(document).ready(function () {
                 questionFive();
             } else {
                 console.log("DID NOT click 3. Alerts")
-                // Subtract 10 seconds
+                secondsLeft -= 10;
                 questionFive();
             }
         });
@@ -122,20 +122,22 @@ $(document).ready(function () {
                 allDone();
             } else {
                 console.log("DID NOT click 3. Alerts")
-                // Subtract 10 seconds
+                secondsLeft -= 10;
                 allDone();
             }
         });
     }
 
     function allDone() {
+        quizFinshed = 1;
         $("#title").text("Quiz Complete!");
         $("#answer1").remove();
         $("#answer2").remove();
         $("#answer3").remove();
         $("#answer4").remove();
-        $("#quiz-box").append('<p><span>Your final score is: </span><span id="finalScore"></span></p>');
+        $("#quiz-box").append('<p><span></span><span id="finalScore"></span></p>');
         $("#quiz-box").append('<form class="form-inline"><div class="form-group"><label for="enter_initials" class="col-sm-2 col-form-label" style="display:contents;">Enter Initials: </label><div class="col-md-6"><input type="text" class="form-control" id="enter_initials"></div></div><button type="submit" class="btn btn-primary">Submit</button></form>');
+        $("#finalScore").text("Your final score is: " + secondsLeft);
         
     }
 
