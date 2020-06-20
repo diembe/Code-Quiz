@@ -1,10 +1,33 @@
 
 $(document).ready(function () {
 
+
+
+    var cornerTimer = $("#cornerTimer");
+    
+    var secondsLeft = 0;
+    
+    function startTime() {
+      var timerInterval = setInterval(function() {
+        secondsLeft--;
+        cornerTimer.text("Time: " + secondsLeft);
+    
+        if(secondsLeft === 0) {
+          clearInterval(timerInterval);
+          allDone();
+        }
+    
+      }, 1000);
+    }
+    
+
+
     $("#start").click(questionOne);
 
 
     function questionOne() {
+        secondsLeft = 75;
+        startTime();
         $("#title").text("Commonly used data types DO NOT include______");
         $("#title").removeClass("text-center");
         $("#introduction").remove();
@@ -115,6 +138,16 @@ $(document).ready(function () {
         $("#quiz-box").append('<form class="form-inline"><div class="form-group"><label for="enter_initials" class="col-sm-2 col-form-label" style="display:contents;">Enter Initials: </label><div class="col-md-6"><input type="text" class="form-control" id="enter_initials"></div></div><button type="submit" class="btn btn-primary">Submit</button></form>');
         
     }
+
+
+
+
+
+
+
+
+
+
 
 
 });
