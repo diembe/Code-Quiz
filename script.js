@@ -1,7 +1,6 @@
 
 $(document).ready(function () {
 
-    var quizFinshed = 0;
     var secondsLeft = 75;
     var cornerTimer = $("#cornerTimer");
     cornerTimer.text("Time: " + secondsLeft);
@@ -13,7 +12,7 @@ $(document).ready(function () {
         secondsLeft--;
         cornerTimer.text("Time: " + secondsLeft);
     
-        if(secondsLeft <= 0 || quizFinshed === 1) {
+        if(secondsLeft <= 0) {
           clearInterval(timerInterval);
           allDone();
         }
@@ -41,12 +40,15 @@ $(document).ready(function () {
         buttonGroup.append('<button type="button" id="answer4" class="btn btn-primary" style="display:block; padding: 5px 20px; margin-bottom:20px;" id="start">4. Numbers</button>');
 
         $(".button-group").on("click", "button", function() {
+            //console.log(this.id);
             if(this.id === 'answer3') {
-                console.log("Clicked 3. Alerts")
+                //console.log("CORRECT")
+                $(".button-group").off();
                 questionTwo();
             } else {
-                console.log("DID NOT click 3. Alerts")
+                //console.log("WRONG")
                 secondsLeft -= 10;
+                $(".button-group").off();
                 questionTwo();
             }
         });
@@ -60,12 +62,15 @@ $(document).ready(function () {
         $("#answer4").text("4. Square Brackets");
 
         $(".button-group").on("click", "button", function() {
+            //console.log(this.id);
             if(this.id === 'answer3') {
-                console.log("Clicked 3. Alerts")
+                console.log("CORRECT")
+                $(".button-group").off();
                 questionThree();
             } else {
-                console.log("DID NOT click 3. Alerts")
+                console.log("WRONG")
                 secondsLeft -= 10;
+                $(".button-group").off();
                 questionThree();
             }
         });
@@ -80,11 +85,13 @@ $(document).ready(function () {
 
         $(".button-group").on("click", "button", function() {
             if(this.id === 'answer4') {
-                console.log("Clicked 3. Alerts")
+                console.log("CORRECT");
+                $(".button-group").off();
                 questionFour();
             } else {
-                console.log("DID NOT click 3. Alerts")
+                console.log("WRONG");
                 secondsLeft -= 10;
+                $(".button-group").off();
                 questionFour();
             }
         });
@@ -99,11 +106,13 @@ $(document).ready(function () {
 
         $(".button-group").on("click", "button", function() {
             if(this.id === 'answer3') {
-                console.log("Clicked 3. Alerts")
+                console.log("CORRECT");
+                $(".button-group").off();
                 questionFive();
             } else {
-                console.log("DID NOT click 3. Alerts")
+                console.log("WRONG");
                 secondsLeft -= 10;
+                $(".button-group").off();
                 questionFive();
             }
         });
@@ -118,18 +127,20 @@ $(document).ready(function () {
 
         $(".button-group").on("click", "button", function() {
             if(this.id === 'answer4') {
-                console.log("Clicked 3. Alerts")
+                console.log("Clicked 4");
+                $(".button-group").off();
                 allDone();
             } else {
-                console.log("DID NOT click 3. Alerts")
+                console.log("WRONG");
                 secondsLeft -= 10;
+                $(".button-group").off();
                 allDone();
             }
         });
     }
 
     function allDone() {
-        quizFinshed = 1;
+        //quizFinshed = 1;
         $("#title").text("Quiz Complete!");
         $("#answer1").remove();
         $("#answer2").remove();
@@ -138,17 +149,9 @@ $(document).ready(function () {
         $("#quiz-box").append('<p><span></span><span id="finalScore"></span></p>');
         $("#quiz-box").append('<form class="form-inline"><div class="form-group"><label for="enter_initials" class="col-sm-2 col-form-label" style="display:contents;">Enter Initials: </label><div class="col-md-6"><input type="text" class="form-control" id="enter_initials"></div></div><button type="submit" class="btn btn-primary">Submit</button></form>');
         $("#finalScore").text("Your final score is: " + secondsLeft);
+        $("#cornerTimer").text("Time: 0");
         
     }
-
-
-
-
-
-
-
-
-
 
 
 
