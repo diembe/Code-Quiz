@@ -1,12 +1,13 @@
 
 $(document).ready(function () {
 
+    // Set initial countdown timer, set it to the corner of the screen, & set empty finalScore variable.
     var secondsLeft = 75;
     var cornerTimer = $("#cornerTimer");
     cornerTimer.text("Time: " + secondsLeft);
     var finalScore = '';
     
-    
+    // On start button click, start timer countdown
     function startTime() {
       var timerInterval = setInterval(function() {
         secondsLeft--;
@@ -20,12 +21,14 @@ $(document).ready(function () {
       }, 1000);
     } 
 
+    // Click event listeners for the start button & high scores button
     $("#highScores").click(highScores);
     $("#start").click(questionOne);
 
 
     function questionOne() {
 
+        // Start the timer function & adjust/create the elements for Q1
         startTime();
         $("#title").text("Commonly used data types DO NOT include______");
         $("#title").removeClass("text-center");
@@ -40,7 +43,7 @@ $(document).ready(function () {
         buttonGroup.append('<button type="button" id="answer4" class="btn btn-primary answer-button" id="start">4. Numbers</button>');
 
         $(".button-group").on("click", "button", function() {
-            //console.log(this.id);
+            // Listen for button click on the right answer, flash response function, turn off event listener so next question works, and proceed to next question's function
             if(this.id === 'answer3') {
                 console.log("CORRECT")
                 rightAnswer();
@@ -57,6 +60,8 @@ $(document).ready(function () {
     }
 
     function questionTwo() {
+
+        // Answer buttons were created in Q1, so they just need to be updated with the question title.
         $("#title").text("The condition in an if/else statement is enclosed within_______");
         $("#answer1").text("1. Quotes");
         $("#answer2").text("2. Curly Brackets");
@@ -150,7 +155,8 @@ $(document).ready(function () {
     }
 
     function allDone() {
-        //quizFinshed = 1;
+        
+        // Rearrange for the final score screen. Set score, add input to submit initials.
         $("#title").text("Quiz Complete!");
         $("#answer1").remove();
         $("#answer2").remove();
@@ -160,12 +166,10 @@ $(document).ready(function () {
         $("#quiz-box").append('<form class="form-inline"><div class="form-group"><label for="enter_initials" class="col-sm-2 col-form-label display-contents">Enter Initials: </label><div class="col-md-6"><input type="text" class="form-control" id="enter_initials"></div></div><button type="button" class="btn btn-primary" id="submitButton">Submit</button></form>');
         finalScore = secondsLeft;
         $("#finalScore").text("Your final score is: " + finalScore);
-        //$("#cornerTimer").text("Time: 0");
-        //secondsLeft = 0;
         cornerTimer.remove();
 
+        // Save initials & score to localstorage and proceed to highscore function/page
         $("#submitButton").on("click", function() {
-            console.log("the submit button was submitted");
             var initials = $("#enter_initials").val();
             localStorage.setItem(initials, finalScore);
             highScores();
@@ -174,6 +178,8 @@ $(document).ready(function () {
     }
 
     function highScores() {
+
+        // Rearrange for highscore screen. loop through localstorage to retrieve all entries & create html to place them.
         $("#quiz-box").empty();
         $("#quiz-box").append('<h3 class="text-center hs-title"  id="title">High Scores</h3>');
 
@@ -182,10 +188,9 @@ $(document).ready(function () {
             var value = localStorage[key];
 
             $("#quiz-box").append('<div class="col-md-6 hs-initials">' + key + '</div><div class="col-md-6 hs-score">' + value + '</div>');
-
-            console.log(key + " => " + value);
         }
 
+        // Add clear & start screen buttons
         $("#quiz-box").append('<button type="button" class="btn btn-primary div-center hs-clear-start" id="clear">Clear High Scores</button>');
 
         $("#quiz-box").append('<button type="submit" class="btn btn-primary div-center hs-clear-start" id="beginning">Start Screen</button>');
@@ -200,6 +205,8 @@ $(document).ready(function () {
         });
     }
 
+
+    // Functions that flash answer response for each question.
     function rightAnswer() {
         $("body").append('<div class="response-right" id="correct">CORRECT</div>');
 
