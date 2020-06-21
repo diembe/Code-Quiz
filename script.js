@@ -4,7 +4,7 @@ $(document).ready(function () {
     var secondsLeft = 75;
     var cornerTimer = $("#cornerTimer");
     cornerTimer.text("Time: " + secondsLeft);
-    
+    var finalScore = '';
     
     
     function startTime() {
@@ -20,7 +20,7 @@ $(document).ready(function () {
       }, 1000);
     } 
 
-
+    $("#highScores").click(highScores);
     $("#start").click(questionOne);
 
 
@@ -147,13 +147,34 @@ $(document).ready(function () {
         $("#answer3").remove();
         $("#answer4").remove();
         $("#quiz-box").append('<p><span></span><span id="finalScore"></span></p>');
-        $("#quiz-box").append('<form class="form-inline"><div class="form-group"><label for="enter_initials" class="col-sm-2 col-form-label" style="display:contents;">Enter Initials: </label><div class="col-md-6"><input type="text" class="form-control" id="enter_initials"></div></div><button type="submit" class="btn btn-primary">Submit</button></form>');
-        $("#finalScore").text("Your final score is: " + secondsLeft);
-        $("#cornerTimer").text("Time: 0");
+        $("#quiz-box").append('<form class="form-inline"><div class="form-group"><label for="enter_initials" class="col-sm-2 col-form-label" style="display:contents;">Enter Initials: </label><div class="col-md-6"><input type="text" class="form-control" id="enter_initials"></div></div><button type="button" class="btn btn-primary" id="submitButton">Submit</button></form>');
+        finalScore = secondsLeft;
+        $("#finalScore").text("Your final score is: " + finalScore);
+        //$("#cornerTimer").text("Time: 0");
+        //secondsLeft = 0;
+        cornerTimer.remove();
+
+        $("#submitButton").on("click", function() {
+            console.log("the submit button was submitted");
+            var initials = $("#enter_initials").val();
+            localStorage.setItem(initials, finalScore);
+            highScores();
+        });
         
     }
 
+    function highScores() {
+        $("#quiz-box").empty();
+        $("#quiz-box").append('<h3 class="text-center" id="title">High Scores</h3>');
+        //for (var i = 0; i < localStorage.length; i++) {
+        //    $("#quiz-box").append(localStorage.getItem(localStorage.key(i)//));
+        //}
 
+        $.each(localStorage, function(key, value){
+            $("#quiz-box").append('<div class="col-md-6">' + key + '</div><div class="col-md-6">' + value + '</div>');
+        });
+    }
+    
 
 });
 
