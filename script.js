@@ -42,11 +42,13 @@ $(document).ready(function () {
         $(".button-group").on("click", "button", function() {
             //console.log(this.id);
             if(this.id === 'answer3') {
-                //console.log("CORRECT")
+                console.log("CORRECT")
+                rightAnswer();
                 $(".button-group").off();
                 questionTwo();
             } else {
                 //console.log("WRONG")
+                wrongAnswer()
                 secondsLeft -= 10;
                 $(".button-group").off();
                 questionTwo();
@@ -65,10 +67,12 @@ $(document).ready(function () {
             //console.log(this.id);
             if(this.id === 'answer3') {
                 console.log("CORRECT")
+                rightAnswer();
                 $(".button-group").off();
                 questionThree();
             } else {
                 console.log("WRONG")
+                wrongAnswer()
                 secondsLeft -= 10;
                 $(".button-group").off();
                 questionThree();
@@ -86,10 +90,12 @@ $(document).ready(function () {
         $(".button-group").on("click", "button", function() {
             if(this.id === 'answer4') {
                 console.log("CORRECT");
+                rightAnswer();
                 $(".button-group").off();
                 questionFour();
             } else {
                 console.log("WRONG");
+                wrongAnswer()
                 secondsLeft -= 10;
                 $(".button-group").off();
                 questionFour();
@@ -107,10 +113,12 @@ $(document).ready(function () {
         $(".button-group").on("click", "button", function() {
             if(this.id === 'answer3') {
                 console.log("CORRECT");
+                rightAnswer();
                 $(".button-group").off();
                 questionFive();
             } else {
                 console.log("WRONG");
+                wrongAnswer()
                 secondsLeft -= 10;
                 $(".button-group").off();
                 questionFive();
@@ -127,11 +135,13 @@ $(document).ready(function () {
 
         $(".button-group").on("click", "button", function() {
             if(this.id === 'answer4') {
-                console.log("Clicked 4");
+                console.log("CORRECT");
+                rightAnswer();
                 $(".button-group").off();
                 allDone();
             } else {
                 console.log("WRONG");
+                wrongAnswer()
                 secondsLeft -= 10;
                 $(".button-group").off();
                 allDone();
@@ -176,13 +186,39 @@ $(document).ready(function () {
             console.log(key + " => " + value);
         }
 
+        $("#quiz-box").append('<button type="button" class="btn btn-primary div-center" style="display:block; padding: 5px 20px; margin-top:30px;" id="clear">Clear High Scores</button>');
+
         $("#quiz-box").append('<button type="submit" class="btn btn-primary div-center" style="display:block; padding: 5px 20px; margin-top:30px;" id="beginning">Start Screen</button>');
 
         $("#beginning").on("click", function() {
             location.reload();
         });
+
+        $("#clear").on("click", function() {
+            localStorage.clear();
+            highScores();
+        });
+    }
+
+    function rightAnswer() {
+        $("body").append('<div style="font-size: 20vw; color:green; font-weight:900; position:fixed; top:0; padding-left: 15px;line-height: 40vw" id="correct">CORRECT</div>');
+
+        $("#correct").animate({ opacity: "0" });
+        
+        setTimeout(function(){
+            $("#correct").remove();
+        }, 400);
     }
     
+    function wrongAnswer() {
+        $("body").append('<div style="font-size: 24.5vw; color:red; font-weight:900; position:fixed; top:0; padding-left: 15px;line-height: 40vw" id="wrong">WRONG</div>');
+
+        $("#wrong").animate({ opacity: "0" });
+        
+        setTimeout(function(){
+            $("#wrong").remove();
+        }, 400);
+    }
     
 
 });
