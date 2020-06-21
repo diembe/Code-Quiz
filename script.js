@@ -34,10 +34,10 @@ $(document).ready(function () {
         var buttonGroup = $("<div>");
         buttonGroup.addClass("button-group");
         $("#quiz-box").append(buttonGroup);
-        buttonGroup.append('<button type="button" id="answer1" class="btn btn-primary" style="display:block; padding: 5px 20px; margin-bottom:20px;" id="start">1. Strings</button>');
-        buttonGroup.append('<button type="button" id="answer2" class="btn btn-primary" style="display:block; padding: 5px 20px; margin-bottom:20px;" id="start">2. Booleans</button>');
-        buttonGroup.append('<button type="button" id="answer3" class="btn btn-primary" style="display:block; padding: 5px 20px; margin-bottom:20px;" id="start">3. Alerts</button>');
-        buttonGroup.append('<button type="button" id="answer4" class="btn btn-primary" style="display:block; padding: 5px 20px; margin-bottom:20px;" id="start">4. Numbers</button>');
+        buttonGroup.append('<button type="button" id="answer1" class="btn btn-primary answer-button" id="start">1. Strings</button>');
+        buttonGroup.append('<button type="button" id="answer2" class="btn btn-primary answer-button" id="start">2. Booleans</button>');
+        buttonGroup.append('<button type="button" id="answer3" class="btn btn-primary answer-button" id="start">3. Alerts</button>');
+        buttonGroup.append('<button type="button" id="answer4" class="btn btn-primary answer-button" id="start">4. Numbers</button>');
 
         $(".button-group").on("click", "button", function() {
             //console.log(this.id);
@@ -157,7 +157,7 @@ $(document).ready(function () {
         $("#answer3").remove();
         $("#answer4").remove();
         $("#quiz-box").append('<p><span></span><span id="finalScore"></span></p>');
-        $("#quiz-box").append('<form class="form-inline"><div class="form-group"><label for="enter_initials" class="col-sm-2 col-form-label" style="display:contents;">Enter Initials: </label><div class="col-md-6"><input type="text" class="form-control" id="enter_initials"></div></div><button type="button" class="btn btn-primary" id="submitButton">Submit</button></form>');
+        $("#quiz-box").append('<form class="form-inline"><div class="form-group"><label for="enter_initials" class="col-sm-2 col-form-label display-contents">Enter Initials: </label><div class="col-md-6"><input type="text" class="form-control" id="enter_initials"></div></div><button type="button" class="btn btn-primary" id="submitButton">Submit</button></form>');
         finalScore = secondsLeft;
         $("#finalScore").text("Your final score is: " + finalScore);
         //$("#cornerTimer").text("Time: 0");
@@ -175,7 +175,7 @@ $(document).ready(function () {
 
     function highScores() {
         $("#quiz-box").empty();
-        $("#quiz-box").append('<h3 class="text-center" style="margin-bottom:30px;" id="title">High Scores</h3>');
+        $("#quiz-box").append('<h3 class="text-center hs-title"  id="title">High Scores</h3>');
 
         for(var i=0, len=localStorage.length; i<len; i++) {
             var key = localStorage.key(i);
@@ -186,9 +186,9 @@ $(document).ready(function () {
             console.log(key + " => " + value);
         }
 
-        $("#quiz-box").append('<button type="button" class="btn btn-primary div-center" style="display:block; padding: 5px 20px; margin-top:30px;" id="clear">Clear High Scores</button>');
+        $("#quiz-box").append('<button type="button" class="btn btn-primary div-center hs-clear-start" id="clear">Clear High Scores</button>');
 
-        $("#quiz-box").append('<button type="submit" class="btn btn-primary div-center" style="display:block; padding: 5px 20px; margin-top:30px;" id="beginning">Start Screen</button>');
+        $("#quiz-box").append('<button type="submit" class="btn btn-primary div-center hs-clear-start" id="beginning">Start Screen</button>');
 
         $("#beginning").on("click", function() {
             location.reload();
@@ -201,7 +201,7 @@ $(document).ready(function () {
     }
 
     function rightAnswer() {
-        $("body").append('<div style="font-size: 20vw; color:green; font-weight:900; position:fixed; top:0; padding-left: 15px;line-height: 40vw" id="correct">CORRECT</div>');
+        $("body").append('<div class="response-right" id="correct">CORRECT</div>');
 
         $("#correct").animate({ opacity: "0" });
         
@@ -211,7 +211,7 @@ $(document).ready(function () {
     }
     
     function wrongAnswer() {
-        $("body").append('<div style="font-size: 24.5vw; color:red; font-weight:900; position:fixed; top:0; padding-left: 15px;line-height: 40vw" id="wrong">WRONG</div>');
+        $("body").append('<div class="response-wrong" id="wrong">WRONG</div>');
 
         $("#wrong").animate({ opacity: "0" });
         

@@ -4,3 +4,13 @@
 .button-group { margin-top:30px; }
 .hs-initials { display:inline-block; text-align:right; font-size:18px; font-weight:600; }
 .hs-score { display:inline-block; text-align:left; font-size:18px; font-weight:600; }
+.hs-button { float:left; padding:20px; cursor: pointer; color:blue; }
+.corner-timer { float:right; padding:20px; }
+.quiz-box { padding-top:30px; }
+.start-button { display:block; padding: 5px 20px; }
+.answer-button { display:block; padding: 5px 20px; margin-bottom:20px; }
+.display-contents { display:contents !important; }
+.hs-title { margin-bottom:30px; }
+.hs-clear-start { display:block; padding: 5px 20px; margin-top:30px; }
+.response-right { font-size: 20vw; color:green; font-weight:900; position:fixed; top:0; padding-left: 15px;line-height: 40vw }
+.response-wrong { font-size: 24.5vw; color:red; font-weight:900; position:fixed; top:0; padding-left: 15px;line-height: 40vw }
