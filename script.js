@@ -181,13 +181,15 @@ $(document).ready(function () {
 
         // Rearrange for highscore screen. loop through localstorage to retrieve all entries & create html to place them.
         $("#quiz-box").empty();
-        $("#quiz-box").append('<h3 class="text-center hs-title"  id="title">High Scores</h3>');
+        $("#quiz-box").append('<div class="col-md-12 home-div" id="div-container"></div>');
+        $("#div-container").append('<h3 class="text-center hs-title"  id="title">High Scores</h3>');
 
         for(var i=0, len=localStorage.length; i<len; i++) {
             var key = localStorage.key(i);
             var value = localStorage[key];
 
-            $("#quiz-box").append('<div class="col-md-6 hs-initials">' + key + '</div><div class="col-md-6 hs-score">' + value + '</div>');
+            $("#quiz-box").append('<div class="row" id="hsRow"></div>');
+            $("#hsRow").append('<div class="col-xs-6 col-md-6 hs-initials">' + key + '</div><div class="col-xs-6 col-md-6 hs-score">' + value + '</div>');
         }
 
         // Add clear & start screen buttons

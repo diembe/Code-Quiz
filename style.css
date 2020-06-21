@@ -2,15 +2,17 @@
 .div-center { margin-left:auto; margin-right:auto; float:none; }
 .text-center { text-align:center; }
 .button-group { margin-top:30px; }
-.hs-initials { display:inline-block; text-align:right; font-size:18px; font-weight:600; }
-.hs-score { display:inline-block; text-align:left; font-size:18px; font-weight:600; }
-.hs-button { float:left; padding:20px; cursor: pointer; color:blue; }
-.corner-timer { float:right; padding:20px; }
-.quiz-box { padding-top:30px; }
+.hs-initials { display:inline-block; text-align:right; font-size:18px; font-weight:600; width:50% !important;}
+.hs-score { display:inline-block; text-align:left; font-size:18px; font-weight:600; width:50% !important;}
+.hs-button { float:left; padding:20px; padding-left:40px; cursor: pointer; color:blue; width:50% !important;}
+.corner-timer { float:right; padding:20px; padding-right:40px; text-align:right; width:50% !important;}
+.quiz-box { padding-top:0px; }
 .start-button { display:block; padding: 5px 20px; }
 .answer-button { display:block; padding: 5px 20px; margin-bottom:20px; }
 .display-contents { display:contents !important; }
-.hs-title { margin-bottom:30px; }
+.hs-title { margin-bottom:30px; display:inline-block;}
 .hs-clear-start { display:block; padding: 5px 20px; margin-top:30px; }
 .response-right { font-size: 20vw; color:green; font-weight:900; position:fixed; top:0; padding-left: 15px;line-height: 40vw }
 .response-wrong { font-size: 24.5vw; color:red; font-weight:900; position:fixed; top:0; padding-left: 15px;line-height: 40vw }
+.home-title { display:inline-block; }
+.home-div {text-align:center; float:none; margin-left:auto; margin-right:auto;}
