@@ -165,15 +165,24 @@ $(document).ready(function () {
 
     function highScores() {
         $("#quiz-box").empty();
-        $("#quiz-box").append('<h3 class="text-center" id="title">High Scores</h3>');
-        //for (var i = 0; i < localStorage.length; i++) {
-        //    $("#quiz-box").append(localStorage.getItem(localStorage.key(i)//));
-        //}
+        $("#quiz-box").append('<h3 class="text-center" style="margin-bottom:30px;" id="title">High Scores</h3>');
 
-        $.each(localStorage, function(key, value){
-            $("#quiz-box").append('<div class="col-md-6">' + key + '</div><div class="col-md-6">' + value + '</div>');
+        for(var i=0, len=localStorage.length; i<len; i++) {
+            var key = localStorage.key(i);
+            var value = localStorage[key];
+
+            $("#quiz-box").append('<div class="col-md-6 hs-initials">' + key + '</div><div class="col-md-6 hs-score">' + value + '</div>');
+
+            console.log(key + " => " + value);
+        }
+
+        $("#quiz-box").append('<button type="submit" class="btn btn-primary div-center" style="display:block; padding: 5px 20px; margin-top:30px;" id="beginning">Start Screen</button>');
+
+        $("#beginning").on("click", function() {
+            location.reload();
         });
     }
+    
     
 
 });
